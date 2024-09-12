@@ -1,0 +1,39 @@
+.home {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.article-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 600px) {
+  .article-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .article-card {
+    width: calc(50% - 20px);
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .article-card {
+    width: calc(33.33% - 20px);
+  }
+}
