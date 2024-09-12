@@ -47,7 +47,6 @@ const Home = () => {
       }
       setArticles(results);
     };
-
     fetchArticles();
   }, [filters]);
 

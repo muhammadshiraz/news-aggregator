@@ -1,12 +1,14 @@
+// src/App.js
 import React from "react";
-import { PreferencesProvider } from "./context/PreferencesContext";
-import Home from "./pages/Home";
+import NewsComponent from "./components/NewsComponent";
 
-const App = () => (
-  <PreferencesProvider>
-    <Home />
-    {/* Other components */}
-  </PreferencesProvider>
-);
+const App = () => {
+  return (
+    <div className="App">
+      <h1>News Aggregator</h1>
+      <NewsComponent />
+    </div>
+  );
+};
 
 export default App;
