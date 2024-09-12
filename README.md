@@ -129,9 +129,9 @@ news-aggregator/
 Create a `.env` file in the root directory of the project and add the following environment variables:
 
 ```plaintext
-REACT_APP_NEWS_API_KEY=bae87c3b6dd341f78eb12b9a3dde9796
-REACT_APP_GUARDIAN_API_KEY=407e5494-8766-4d8a-b09b-9338d3195ca0
-REACT_APP_NYTIMES_API_KEY=1KMqYt8HzovjfyAg0qjygL1BIkuxCfuq
+REACT_APP_NEWS_API_KEY=your_newsapi_key_here
+REACT_APP_GUARDIAN_API_KEY=your_guardian_api_key_here
+REACT_APP_NY_TIMES_API_KEY=your_ny_times_api_key_here
 ```
 
 Replace `your_newsapi_key_here`, `your_guardian_api_key_here`, and `your_ny_times_api_key_here` with your actual API keys.
