@@ -3,10 +3,6 @@ import axios from "axios";
 const BASE_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 
 export const fetchNYTimesArticles = async (query, date, category) => {
-  if (!query) {
-    console.error("Query parameter is required.");
-    return [];
-  }
   
   const apiKey = process.env.REACT_APP_NYTIMES_API_KEY;
   if (!apiKey) {
@@ -17,7 +13,7 @@ export const fetchNYTimesArticles = async (query, date, category) => {
   try {
     const response = await axios.get(BASE_URL, {
       params: {
-        q: query,
+        q: query || '',
         "api-key": apiKey,
         begin_date: date ? date.replace(/-/g, "") : undefined, // Format date as YYYYMMDD
         fq: category ? `news_desk:("${category}")` : undefined, // Filter by news desk category

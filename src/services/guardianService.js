@@ -3,15 +3,12 @@ import axios from "axios";
 const BASE_URL = "https://content.guardianapis.com/search";
 
 export const fetchGuardianArticles = async (query, date, category) => {
-  if (!query) {
-    console.error("Query parameter is required.");
-    return [];
-  }
+  
 
   try {
     const response = await axios.get(BASE_URL, {
       params: {
-        q: query,
+        q: query || '',
         "api-key": process.env.REACT_APP_GUARDIAN_API_KEY,
         "from-date": date || undefined,
         section: category || undefined,

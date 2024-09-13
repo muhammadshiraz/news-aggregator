@@ -7,10 +7,10 @@ export const fetchNewsAPIArticles = async (query, date, category) => {
     const response = await axios.get(BASE_URL, {
       params: {
         q: query || '',
-        category: category || undefined,
+        category: category || '',
         apiKey: process.env.REACT_APP_NEWS_API_KEY,
         language: "en",
-        from: date || undefined,
+        ...(date && { from: date }), // Use the date directly
       },
     });
     

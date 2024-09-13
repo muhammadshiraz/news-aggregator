@@ -22,29 +22,46 @@ const Home = () => {
     const fetchArticles = async () => {
       setLoading(true);
       try {
-        // Fetch NewsAPI Articles
-        const newsArticles = await fetchNewsAPIArticles(
-          filters.query,
-          filters.date,
-          filters.category
-        );
-        setNewsAPIArticles(newsArticles);
+        if (filters.source === "newsapi") {
+          // Fetch only NewsAPI Articles
+          const newsArticles = await fetchNewsAPIArticles(
+            filters.query,
+            filters.date,
+            filters.category
+          );
+          setNewsAPIArticles(newsArticles);
+          setGuardianArticles([]); // Clear other sources
+          setNYTimesArticles([]);
+        } else if (filters.source === "guardian") {
+          // Fetch only Guardian Articles
+          const guardianArticles = await fetchGuardianArticles(
+            filters.query,
+            filters.date,
+            filters.category
+          );
+          setGuardianArticles(guardianArticles);
+          setNewsAPIArticles([]); // Clear other sources
+          setNYTimesArticles([]);
+        } else if (filters.source === "nytimes") {
+          // Fetch only NY Times Articles
+          const nyTimesArticles = await fetchNYTimesArticles(
+            filters.query,
+            filters.date,
+            filters.category
+          );
+          setNYTimesArticles(nyTimesArticles);
+          setNewsAPIArticles([]); // Clear other sources
+          setGuardianArticles([]);
+        } else {
+          // Fetch articles from all sources for the initial load
+          const newsArticles = await fetchNewsAPIArticles(filters.query, filters.date, filters.category);
+          const guardianArticles = await fetchGuardianArticles(filters.query, filters.date, filters.category);
+          const nyTimesArticles = await fetchNYTimesArticles(filters.query, filters.date, filters.category);
 
-        // Fetch Guardian Articles
-        const guardianArticles = await fetchGuardianArticles(
-          filters.query,
-          filters.date,
-          filters.category
-        );
-        setGuardianArticles(guardianArticles);
-
-        // Fetch NY Times Articles
-        const nyTimesArticles = await fetchNYTimesArticles(
-          filters.query,
-          filters.date,
-          filters.category
-        );
-        setNYTimesArticles(nyTimesArticles);
+          setNewsAPIArticles(newsArticles);
+          setGuardianArticles(guardianArticles);
+          setNYTimesArticles(nyTimesArticles);
+        }
       } catch (error) {
         console.error("Error fetching articles:", error);
       } finally {
@@ -52,8 +69,8 @@ const Home = () => {
       }
     };
 
-    fetchArticles(); // Fetch articles on component mount
-  }, [filters]); // Re-fetch when filters change
+    fetchArticles(); // Fetch articles on component mount and whenever filters change
+  }, [filters]);
   
 
   const handleSearch = (searchParams) => {
