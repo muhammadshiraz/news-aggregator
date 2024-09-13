@@ -1,6 +1,6 @@
+// src/components/SearchBar.js
 import React, { useState } from "react";
 
-// Categories for dropdown, can be expanded as needed
 const categories = [
   "General",
   "Business",
@@ -14,7 +14,7 @@ const categories = [
 const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState("");
   const [date, setDate] = useState("");
-  const [category, setCategory] = useState(""); // Updated to handle dropdown values
+  const [category, setCategory] = useState("");
   const [source, setSource] = useState("");
 
   const handleSearch = () => {

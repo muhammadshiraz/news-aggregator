@@ -7,7 +7,10 @@ import { fetchGuardianArticles } from "../services/guardianService";
 import { fetchNYTimesArticles } from "../services/nyTimesService";
 
 const Home = () => {
-  const [articles, setArticles] = useState([]);
+  const [newsAPIArticles, setNewsAPIArticles] = useState([]);
+  const [guardianArticles, setGuardianArticles] = useState([]);
+  const [nyTimesArticles, setNYTimesArticles] = useState([]);
+  const [loading, setLoading] = useState(false); // Loading state
   const [filters, setFilters] = useState({
     query: "latest",
     date: "",
@@ -17,35 +20,45 @@ const Home = () => {
 
   useEffect(() => {
     const fetchArticles = async () => {
-      let results = [];
-      if (filters.source === "newsapi" || !filters.source) {
-        results = results.concat(
-          await fetchNewsAPIArticles(
+      setLoading(true);
+      try {
+        if (filters.source === "newsapi" || !filters.source) {
+          const articles = await fetchNewsAPIArticles(
             filters.query,
             filters.date,
             filters.category
-          )
-        );
-      }
-      if (filters.source === "guardian" || !filters.source) {
-        results = results.concat(
-          await fetchGuardianArticles(
+          );
+          setNewsAPIArticles(articles);
+        } else {
+          setNewsAPIArticles([]);
+        }
+
+        if (filters.source === "guardian" || !filters.source) {
+          const articles = await fetchGuardianArticles(
             filters.query,
             filters.date,
             filters.category
-          )
-        );
-      }
-      if (filters.source === "nytimes" || !filters.source) {
-        results = results.concat(
-          await fetchNYTimesArticles(
+          );
+          setGuardianArticles(articles);
+        } else {
+          setGuardianArticles([]);
+        }
+
+        if (filters.source === "nytimes" || !filters.source) {
+          const articles = await fetchNYTimesArticles(
             filters.query,
             filters.date,
             filters.category
-          )
-        );
+          );
+          setNYTimesArticles(articles);
+        } else {
+          setNYTimesArticles([]);
+        }
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      } finally {
+        setLoading(false);
       }
-      setArticles(results);
     };
 
     fetchArticles();
@@ -56,17 +69,52 @@ const Home = () => {
   };
 
   return (
-    <div className='home'>
+    <div className="home">
       <SearchBar onSearch={handleSearch} />
-      <div className='article-list'>
-        {articles.length > 0 ? (
-          articles.map((article, index) => (
-            <ArticleCard key={index} article={article} />
-          ))
-        ) : (
-          <p>No articles found</p>
-        )}
-      </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="article-sections">
+          <section>
+            <h2>NewsAPI Articles</h2>
+            <div className="article-list">
+              {newsAPIArticles.length > 0 ? (
+                newsAPIArticles.map((article, index) => (
+                  <ArticleCard key={index} article={article} />
+                ))
+              ) : (
+                <p>No articles found</p>
+              )}
+            </div>
+          </section>
+
+          <section>
+            <h2>The Guardian Articles</h2>
+            <div className="article-list">
+              {guardianArticles.length > 0 ? (
+                guardianArticles.map((article, index) => (
+                  <ArticleCard key={index} article={article} />
+                ))
+              ) : (
+                <p>No articles found</p>
+              )}
+            </div>
+          </section>
+
+          <section>
+            <h2>The New York Times Articles</h2>
+            <div className="article-list">
+              {nyTimesArticles.length > 0 ? (
+                nyTimesArticles.map((article, index) => (
+                  <ArticleCard key={index} article={article} />
+                ))
+              ) : (
+                <p>No articles found</p>
+              )}
+            </div>
+          </section>
+        </div>
+      )}
     </div>
   );
 };

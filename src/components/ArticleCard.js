@@ -1,16 +1,23 @@
+// src/components/ArticleCard.js
 import React from "react";
 
-const ArticleCard = ({ article }) => (
-  <div className='article-card'>
-    <h2>{article.title}</h2>
-    {article.imageUrl && <img src={article.imageUrl} alt={article.title} />}
-    <p>{article.description}</p>
-    <a href={article.url} target='_blank' rel='noopener noreferrer'>
-      Read more
-    </a>
-    <p>Source: {article.source}</p>
-    <p>Published at: {new Date(article.publishedAt).toLocaleDateString()}</p>
-  </div>
-);
+const ArticleCard = ({ article }) => {
+  return (
+    <div className='article-card'>
+      <img
+        src={article.imageUrl || "default-placeholder-image-url.jpg"} // Use a default image if no image URL is available
+        alt={article.title}
+        className='article-image'
+      />
+      <h3>{article.title}</h3>
+      <p>{article.description}</p>
+      <a href={article.url} target='_blank' rel='noopener noreferrer'>
+        Read More
+      </a>
+      <p>Source: {article.source}</p>
+      <p>Published At: {new Date(article.publishedAt).toLocaleDateString()}</p>
+    </div>
+  );
+};
 
 export default ArticleCard;

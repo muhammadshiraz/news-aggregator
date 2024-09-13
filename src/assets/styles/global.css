@@ -1,34 +1,33 @@
-/* src/styles/App.css */
+/* src/styles/styles.css */
 .search-bar {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .search-bar input,
 .search-bar select,
 .search-bar button {
-  margin: 5px 0;
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.article-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .article-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
 }
 
-@media (min-width: 600px) {
+@media (max-width: 768px) {
   .article-list {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .article-card {
-    width: 48%;
-    margin: 1%;
-  }
-}
-
-@media (min-width: 900px) {
-  .article-card {
-    width: 30%;
+    grid-template-columns: 1fr;
   }
 }
