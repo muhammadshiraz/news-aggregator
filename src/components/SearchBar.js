@@ -1,5 +1,6 @@
 // src/components/SearchBar.js
 import React, { useState } from "react";
+import "../assets/styles/SearchBar.css";
 
 const categories = [
   "General",
@@ -19,7 +20,7 @@ const SearchBar = ({ onSearch }) => {
 
   const handleSearch = () => {
     onSearch({ query, date, category, source });
-  };
+  };  
 
   return (
     <div className='search-bar'>

@@ -1,0 +1,54 @@
+/* src/styles/styles.css */
+
+/* Search Bar Styles */
+.search-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .search-bar input,
+  .search-bar select,
+  .search-bar button {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .search-bar button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .search-bar button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Article Sections Styles */
+  .article-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .article-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+  }
+  
+  @media (max-width: 768px) {
+    .article-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  

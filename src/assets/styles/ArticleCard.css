@@ -1,0 +1,63 @@
+/* Updated styles for the ArticleCard component */
+.article-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the start */
+    width: 100%;
+    max-width: 300px; /* Adjust as per your layout */
+    height: 400px; /* Set a fixed height for the cards */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    overflow: hidden; /* Prevent content overflow */
+    background-color: #fff;
+  }
+  
+  .article-image {
+    width: 100%;
+    height: 150px; /* Set a fixed height for the image */
+    object-fit: cover; /* Ensure the image scales properly */
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .article-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: left; /* Align title to the left */
+    width: 100%; /* Ensure title takes full width */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .article-card p {
+    font-size: 14px;
+    color: #666;
+    text-align: left; /* Align description to the left */
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit the description to 3 lines */
+    -webkit-box-orient: vertical;
+    width: 100%; /* Ensure description takes full width */
+  }
+  
+  .article-card a {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: auto;
+    align-self: flex-start; /* Align link to the start */
+  }
+  
+  .article-card p:last-of-type {
+    font-size: 12px;
+    color: #999;
+  }
+  

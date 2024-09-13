@@ -1,11 +1,13 @@
 // src/components/ArticleCard.js
 import React from "react";
+import defaultPlaceholderImage from "../assets/images/default-placeholder-image-url.png";
+import "../assets/styles/ArticleCard.css";
 
 const ArticleCard = ({ article }) => {
   return (
     <div className='article-card'>
       <img
-        src={article.imageUrl || "default-placeholder-image-url.jpg"} // Use a default image if no image URL is available
+        src={article.imageUrl || defaultPlaceholderImage} // Use a default image if no image URL is available
         alt={article.title}
         className='article-image'
       />

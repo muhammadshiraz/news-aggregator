@@ -1,0 +1,31 @@
+/* src/styles/Home.css */
+.home {
+  padding: 20px;
+  background-color: #f4f7f6;
+  font-family: 'Arial', sans-serif;
+}
+
+.article-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+h2 {
+  color: #444;
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.article-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.no-articles {
+  text-align: center;
+  color: #888;
+  font-size: 18px;
+}

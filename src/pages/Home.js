@@ -5,14 +5,15 @@ import ArticleCard from "../components/ArticleCard";
 import { fetchNewsAPIArticles } from "../services/newsAPIService";
 import { fetchGuardianArticles } from "../services/guardianService";
 import { fetchNYTimesArticles } from "../services/nyTimesService";
+import "../assets/styles/Home.css";
 
-const Home = () => {
+const Home = () => {  
   const [newsAPIArticles, setNewsAPIArticles] = useState([]);
   const [guardianArticles, setGuardianArticles] = useState([]);
   const [nyTimesArticles, setNYTimesArticles] = useState([]);
   const [loading, setLoading] = useState(false); // Loading state
   const [filters, setFilters] = useState({
-    query: "latest",
+    query: "",
     date: "",
     category: "",
     source: "",
@@ -22,38 +23,29 @@ const Home = () => {
     const fetchArticles = async () => {
       setLoading(true);
       try {
-        if (filters.source === "newsapi" || !filters.source) {
-          const articles = await fetchNewsAPIArticles(
-            filters.query,
-            filters.date,
-            filters.category
-          );
-          setNewsAPIArticles(articles);
-        } else {
-          setNewsAPIArticles([]);
-        }
+        // Fetch NewsAPI Articles
+        const newsArticles = await fetchNewsAPIArticles(
+          filters.query,
+          filters.date,
+          filters.category
+        );
+        setNewsAPIArticles(newsArticles);
 
-        if (filters.source === "guardian" || !filters.source) {
-          const articles = await fetchGuardianArticles(
-            filters.query,
-            filters.date,
-            filters.category
-          );
-          setGuardianArticles(articles);
-        } else {
-          setGuardianArticles([]);
-        }
+        // Fetch Guardian Articles
+        const guardianArticles = await fetchGuardianArticles(
+          filters.query,
+          filters.date,
+          filters.category
+        );
+        setGuardianArticles(guardianArticles);
 
-        if (filters.source === "nytimes" || !filters.source) {
-          const articles = await fetchNYTimesArticles(
-            filters.query,
-            filters.date,
-            filters.category
-          );
-          setNYTimesArticles(articles);
-        } else {
-          setNYTimesArticles([]);
-        }
+        // Fetch NY Times Articles
+        const nyTimesArticles = await fetchNYTimesArticles(
+          filters.query,
+          filters.date,
+          filters.category
+        );
+        setNYTimesArticles(nyTimesArticles);
       } catch (error) {
         console.error("Error fetching articles:", error);
       } finally {
@@ -61,8 +53,9 @@ const Home = () => {
       }
     };
 
-    fetchArticles();
-  }, [filters]);
+    fetchArticles(); // Fetch articles on component mount
+  }, [filters]); // Re-fetch when filters change
+  
 
   const handleSearch = (searchParams) => {
     setFilters(searchParams);
@@ -72,7 +65,9 @@ const Home = () => {
     <div className="home">
       <SearchBar onSearch={handleSearch} />
       {loading ? (
-        <p>Loading...</p>
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+        </div>
       ) : (
         <div className="article-sections">
           <section>
