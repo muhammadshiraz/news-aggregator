@@ -21,6 +21,7 @@ The source code for this project is available at: [https://github.com/muhammadsh
 - [Folder Structure](#folder-structure)
 - [Environment Variables](#environment-variables)
 - [Troubleshooting](#troubleshooting)
+- [Important Note on API Request Restrictions](#important-note-on-api-request-restrictions)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -162,6 +163,31 @@ Replace the placeholders with your actual API keys.
 - **401 Unauthorized Error**: Check that API keys are correctly set in the `.env` file.
 - **No Articles Found**: Ensure API endpoints and query parameters are correct and that the APIs are returning data.
 
+## Important Note on API Request Restrictions
+
+If you encounter the following error while using the application:
+
+```
+Requests from the browser are not allowed on the Developer plan, except from localhost.
+```
+
+This issue occurs because some APIs, like **NewsAPI**, restrict API requests from public domains when using a free or developer plan. As a result, the application may fail to fetch articles from certain APIs when deployed on platforms such as Vercel.
+
+### Possible Solutions:
+
+1. **Upgrade to a Paid API Plan**:
+   - Consider upgrading to a paid plan of the affected API (e.g., NewsAPI) that allows requests from public domains.
+
+2. **Use a Proxy Server**:
+   - Implement a server-side proxy to handle the API requests. This way, the API key and requests remain on the server, bypassing client-side restrictions. You can set up a simple Node.js proxy or use serverless functions (e.g., on Vercel or Heroku).
+
+3. **Local Development**:
+   - The issue does not affect local development. You can continue testing and running the application on `localhost` without restrictions.
+
+### Future Enhancements:
+
+To prevent this issue, the application can be enhanced with server-side API requests to protect API keys and avoid limitations imposed on browser-based requests.
+
 ## Contributing
 
 Contributions are welcome! To contribute:
@@ -175,5 +201,3 @@ Contributions are welcome! To contribute:
 Please ensure your contributions are well-documented and tested.
 
 ## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
