@@ -1,4 +1,3 @@
-// src/components/ArticleCard.js
 import React from "react";
 import defaultPlaceholderImage from "../assets/images/default-placeholder-image-url.png";
 import "../assets/styles/ArticleCard.css";

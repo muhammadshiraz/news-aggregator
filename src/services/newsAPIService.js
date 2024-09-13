@@ -7,17 +7,15 @@ export const fetchNewsAPIArticles = async (query, date, category) => {
     const response = await axios.get(BASE_URL, {
       params: {
         q: query || '',
-        category: category || undefined, // Only include category if defined
+        category: category || undefined,
         apiKey: process.env.REACT_APP_NEWS_API_KEY,
         language: "en",
-        from: date || undefined, // Only include 'from' if date is provided
+        from: date || undefined,
       },
     });
-
-    // Log the API response for debugging purposes
+    
     console.log("NewsAPI Response:", response.data);
-
-    // Check if articles are returned
+    
     if (response.data.status === 'ok' && response.data.articles.length > 0) {
       return response.data.articles.map((item) => ({
         title: item.title,
@@ -31,8 +29,7 @@ export const fetchNewsAPIArticles = async (query, date, category) => {
       console.warn("No articles found for the provided query, date, or category.");
       return [];
     }
-  } catch (error) {
-    // Enhanced error handling with additional debugging info
+  } catch (error) {    
     console.error("Error fetching NewsAPI articles:", error.response ? error.response.data : error.message);
     return [];
   }

@@ -1,6 +1,3 @@
-/* src/styles/styles.css */
-
-/* Search Bar Styles */
 .search-bar {
     display: flex;
     flex-wrap: wrap;
@@ -33,7 +30,6 @@
     background-color: #0056b3;
   }
   
-  /* Article Sections Styles */
   .article-sections {
     display: flex;
     flex-direction: column;

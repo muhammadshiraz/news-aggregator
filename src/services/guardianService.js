@@ -1,4 +1,3 @@
-// src/services/guardianService.js
 import axios from "axios";
 
 const BASE_URL = "https://content.guardianapis.com/search";
@@ -13,16 +12,15 @@ export const fetchGuardianArticles = async (query, date, category) => {
     const response = await axios.get(BASE_URL, {
       params: {
         q: query,
-        "api-key": process.env.REACT_APP_GUARDIAN_API_KEY, // Correct API key parameter
-        "from-date": date || undefined, // Apply date filter if provided
-        section: category || undefined, // Apply section/category filter if provided
-        showFields: "headline,trailText", // Use trailText instead of bodyText to avoid [Removed] issues
-        "show-elements": "image", // Include media elements for images
+        "api-key": process.env.REACT_APP_GUARDIAN_API_KEY,
+        "from-date": date || undefined,
+        section: category || undefined,
+        showFields: "headline,trailText",
+        "show-elements": "image",
       },
     });
 
-    return response.data.response.results.map((item) => {
-      // Extract the image URL from media elements if available
+    return response.data.response.results.map((item) => {      
       const imageElement = item.elements?.find(
         (element) => element.type === "image"
       );
@@ -31,8 +29,7 @@ export const fetchGuardianArticles = async (query, date, category) => {
         : "";
 
       return {
-        title: item.webTitle,
-        // Use trailText or fallback to a default message if content is restricted
+        title: item.webTitle,        
         description: item.fields?.trailText || "Content unavailable.",
         url: item.webUrl,
         imageUrl: imageUrl,

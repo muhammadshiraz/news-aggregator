@@ -1,4 +1,3 @@
-// src/context/PreferencesContext.js
 import React, { createContext, useState, useContext } from "react";
 
 // Create the context
@@ -19,5 +18,4 @@ export const PreferencesProvider = ({ children }) => {
   );
 };
 
-// Create a custom hook to use the context
 export const usePreferences = () => useContext(PreferencesContext);

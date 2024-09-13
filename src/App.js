@@ -4,8 +4,7 @@ import Home from "./pages/Home";
 
 const App = () => (
   <PreferencesProvider>
-    <Home />
-    {/* Other components */}
+    <Home />    
   </PreferencesProvider>
 );
 

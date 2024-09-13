@@ -1,4 +1,3 @@
-// src/pages/Home.js
 import React, { useState, useEffect } from "react";
 import SearchBar from "../components/SearchBar";
 import ArticleCard from "../components/ArticleCard";
