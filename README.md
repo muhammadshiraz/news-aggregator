@@ -1,5 +1,7 @@
 # News Aggregator Application
 
+![Screenshot](assets/images/screenshot.png)
+
 Welcome to the News Aggregator Application! This React.js-based frontend web application aggregates news articles from various sources, allowing users to search, filter, and view articles from multiple news providers.
 
 ## Live Demo
@@ -201,3 +203,5 @@ Contributions are welcome! To contribute:
 Please ensure your contributions are well-documented and tested.
 
 ## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
